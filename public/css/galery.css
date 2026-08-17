@@ -1,0 +1,405 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background-color: #f4f5f7;
+    color: #1a1a1a;
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ==========================================
+   LAYOUT STRUCTURE
+   ========================================== */
+.admin-sidebar {
+    width: 260px;
+    background-color: #000000;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 28px 20px;
+    flex-shrink: 0;
+}
+
+.admin-main {
+    flex: 1;
+    overflow-y: auto;
+    padding: 32px 40px;
+    background-color: #f8f9fa;
+}
+
+.brand-header {
+    margin-bottom: 36px;
+}
+
+.brand-header h1 {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+}
+
+.brand-header p {
+    font-size: 11px;
+    color: #888888;
+    margin-top: 4px;
+}
+
+.nav-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    border-radius: 16px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: #aaaaaa;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: #1a1a1a;
+    color: #ffffff;
+}
+
+.nav-link.active {
+    background-color: #ffffff;
+    color: #000000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link svg {
+    width: 20px;
+    height: 20px;
+}
+
+.user-profile {
+    border-top: 1px solid #222222;
+    padding-top: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.user-name {
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.user-email {
+    font-size: 11px;
+    color: #777777;
+}
+
+.btn-logout {
+    background: none;
+    border: none;
+    color: #888888;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.btn-logout:hover {
+    color: #ffffff;
+}
+
+.topbar {
+    margin-bottom: 32px;
+}
+
+.topbar h2 {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.topbar p {
+    font-size: 13px;
+    color: #666666;
+    margin-top: 2px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 18px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-left: 4px solid #000000;
+    padding-left: 12px;
+}
+
+.crud-section {
+    margin-bottom: 48px;
+}
+
+.btn-primary {
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    padding: 15px 28px;
+    border-radius: 50px;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #222222;
+}
+
+.btn-action-edit {
+    background-color: #e9ecef;
+    color: #000000;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-right: 6px;
+    transition: background 0.2s;
+}
+
+.btn-action-edit:hover {
+    background-color: #dee2e6;
+}
+
+.btn-action-delete {
+    background-color: #dc3545;
+    color: #ffffff;
+    border: none;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-action-delete:hover {
+    background-color: #bb2d3b;
+}
+
+/* ==========================================
+   TABLE DESIGN
+   ========================================== */
+.main-content {
+    margin-left: 260px;
+    flex: 1;
+    padding: 40px 50px;
+}
+
+.page-title {
+    font-size: 28px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.page-subtitle {
+    font-size: 13px;
+    color: #666;
+    margin-top: 2px;
+    margin-bottom: 30px;
+}
+
+.header-action {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.section-title::before {
+    content: '';
+    display: inline-block;
+    width: 4px;
+    height: 18px;
+    background-color: #000;
+    margin-right: 10px;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #222;
+}
+
+.btn-secondary {
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Gallery Cards Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.card-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+    padding: 0 4px;
+}
+
+.card-title {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.btn-delete {
+    background: none;
+    border: none;
+    color: #e53e3e;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    text-decoration: underline;
+}
+
+/* Form Upload Styles */
+.form-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 600px;
+    border: 1px solid #e2e8f0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid #d7dde6;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    outline: none;
+}
+
+.form-group textarea {
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    border-color: #111111;
+}
+
+.alert-success-box,
+.alert-error-box {
+    margin-bottom: 20px;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.alert-success-box {
+    background: #e8f7ee;
+    color: #166534;
+}
+
+.alert-error-box {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.card-body {
+    display: grid;
+    gap: 6px;
+    margin-top: 12px;
+    padding: 0 4px;
+}
+
+.card-description {
+    color: #666666;
+    font-size: 12px;
+    line-height: 1.45;
+}
+
+.empty-state {
+    color: #666666;
+    font-size: 13px;
+}

@@ -1,0 +1,496 @@
+:root {
+    --black: #111111;
+    --soft: #f4f4f4;
+    --white: #ffffff;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Poppins", Arial, sans-serif;
+    color: var(--black);
+    background: var(--white);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.container {
+    width: min(1160px, calc(100% - 48px));
+    margin: 0 auto;
+}
+
+.site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    width: 100%;
+    padding: 68px 0 0;
+    color: var(--white);
+}
+
+.nav-wrap {
+    display: flex;
+    align-items: center;
+    gap: 48px;
+}
+
+.brand {
+    font-size: 28px;
+    font-weight: 800;
+}
+
+.nav {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.nav-logout {
+    margin: 0;
+}
+
+.nav-action {
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    padding: 8px 16px;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.page-hero {
+    min-height: 464px;
+    padding-top: 235px;
+    color: var(--white);
+    background:
+        linear-gradient(rgba(0, 0, 0, .48), rgba(0, 0, 0, .48)),
+        url("/assets/monika-grabkowska-P1aohbiT-EY-unsplash.jpg") center 58% / cover no-repeat;
+}
+
+.page-hero h1 {
+    margin: 0;
+    font-size: clamp(38px, 5vw, 54px);
+    line-height: 1.05;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.showcase {
+    padding: 75px 0 84px;
+    background: var(--soft);
+}
+
+.slider-wrap {
+    position: relative;
+}
+
+.featured-photo {
+    position: relative;
+    overflow: hidden;
+    margin: 0;
+    border-radius: 13px;
+    box-shadow: 0 3px 7px rgba(0, 0, 0, .22);
+}
+
+.featured-photo img {
+    width: 100%;
+    height: 428px;
+    object-fit: cover;
+    object-position: center 47%;
+    transition: opacity .2s ease;
+}
+
+.featured-photo [data-slider-caption] {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: grid;
+    gap: 6px;
+    padding: 22px 28px;
+    color: var(--white);
+    background: linear-gradient(transparent, rgba(0, 0, 0, .78));
+}
+
+.featured-photo strong {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.featured-photo span {
+    max-width: 720px;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+.featured-photo img.is-changing {
+    opacity: .35;
+}
+
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 2;
+    width: 48px;
+    height: 48px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .18);
+    cursor: pointer;
+    transform: translateY(-50%);
+}
+
+.slider-arrow::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 13px;
+    height: 13px;
+    border-top: 5px solid var(--black);
+    border-left: 5px solid var(--black);
+    transform-origin: center;
+}
+
+.slider-arrow.prev {
+    left: -24px;
+}
+
+.slider-arrow.prev::before {
+    transform: translate(-34%, -50%) rotate(-45deg);
+}
+
+.slider-arrow.next {
+    right: -24px;
+}
+
+.slider-arrow.next::before {
+    transform: translate(-66%, -50%) rotate(135deg);
+}
+
+.gallery-section {
+    padding: 99px 0 108px;
+    background: var(--white);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.gallery-item {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    border-radius: 13px;
+    box-shadow: 0 2px 7px rgba(0, 0, 0, .2);
+}
+
+.gallery-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.gallery-caption {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 42px 14px 14px;
+    color: var(--white);
+    background: linear-gradient(transparent, rgba(0, 0, 0, .82));
+}
+
+.gallery-caption h2 {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+.gallery-caption p {
+    margin: 5px 0 0;
+    font-size: 11px;
+    line-height: 1.45;
+}
+
+.detail-section {
+    padding: 84px 0 96px;
+    background: var(--white);
+}
+
+.detail-wrap {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 42px;
+    align-items: start;
+}
+
+.detail-image {
+    overflow: hidden;
+    border-radius: 13px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, .2);
+}
+
+.detail-image img {
+    width: 100%;
+    max-height: 620px;
+    object-fit: cover;
+}
+
+.detail-copy h2 {
+    margin: 0 0 18px;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.1;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.detail-copy p {
+    margin: 0 0 28px;
+    color: #2a2a2a;
+    font-size: 14px;
+    line-height: 1.8;
+    font-weight: 500;
+}
+
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 22px;
+    background: var(--black);
+    color: var(--white);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.gallery-item:nth-child(2) img {
+    object-position: 62% center;
+}
+
+.gallery-item:nth-child(4) img {
+    object-position: center 68%;
+}
+
+.gallery-item:nth-child(6) img {
+    object-position: center 58%;
+}
+
+.gallery-item:nth-child(10) img {
+    object-position: center 60%;
+}
+
+.gallery-item:nth-child(12) img {
+    object-position: center 55%;
+}
+
+.site-footer {
+    padding: 108px 0 50px;
+    background: #111111;
+    color: var(--white);
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.8fr .7fr .7fr 1.1fr;
+    gap: 56px;
+}
+
+.footer h2 {
+    margin: 0 0 26px;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.footer h3 {
+    margin: 0 0 25px;
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.footer p,
+.footer li {
+    font-size: 12px;
+    line-height: 1.75;
+}
+
+.footer p {
+    max-width: 350px;
+    margin: 0 0 28px;
+    color: #d4d4d4;
+    font-weight: 500;
+}
+
+.footer ul {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.footer li {
+    display: flex;
+    gap: 13px;
+    align-items: flex-start;
+    color: #f3f3f3;
+    font-weight: 600;
+}
+
+.socials {
+    display: flex;
+    gap: 14px;
+}
+
+.socials img {
+    width: 38px;
+    height: 38px;
+}
+
+.contact-icon {
+    width: 16px;
+    height: 16px;
+    margin-top: 3px;
+    object-fit: contain;
+}
+
+.copyright {
+    margin-top: 88px;
+    color: #a7a7a7;
+    font-size: 10px;
+    text-align: center;
+}
+
+@media (max-width: 960px) {
+    .site-header {
+        padding-top: 30px;
+    }
+
+    .nav-wrap {
+        justify-content: space-between;
+        gap: 24px;
+    }
+
+    .nav {
+        gap: 14px;
+    }
+
+    .page-hero {
+        min-height: 380px;
+        padding-top: 185px;
+    }
+
+    .featured-photo img {
+        height: 340px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .detail-wrap {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: min(100% - 28px, 1160px);
+    }
+
+    .site-header {
+        position: static;
+        padding: 22px 0;
+        background: #111111;
+    }
+
+    .nav-wrap {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+    }
+
+    .page-hero {
+        min-height: 300px;
+        padding-top: 120px;
+    }
+
+    .showcase {
+        padding: 52px 0 58px;
+    }
+
+    .featured-photo {
+        border-radius: 10px;
+    }
+
+    .featured-photo img {
+        height: 230px;
+    }
+
+    .slider-arrow {
+        width: 40px;
+        height: 40px;
+    }
+
+    .slider-arrow.prev {
+        left: -8px;
+    }
+
+    .slider-arrow.next {
+        right: -8px;
+    }
+
+    .gallery-section {
+        padding: 58px 0 64px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .site-footer {
+        padding: 64px 0 36px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .detail-section {
+        padding: 58px 0 64px;
+    }
+
+    .copyright {
+        margin-top: 48px;
+    }
+}
