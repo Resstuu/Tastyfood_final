@@ -30,9 +30,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
     Route::get('/galery', [GalleryController::class, 'index'])->name('admin.gallery');
     Route::post('/galery', [GalleryController::class, 'store'])->name('admin.gallery.store');
+    Route::put('/galery/{gallery}', [GalleryController::class, 'update'])->name('admin.gallery.update');
     Route::delete('/galery/{gallery}', [GalleryController::class, 'destroy'])->name('admin.gallery.destroy');
     Route::get('/news', [NewsController::class, 'index'])->name('admin.news');
     Route::post('/news', [NewsController::class, 'store'])->name('admin.news.store');
+    Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
     Route::get('/message', [MessageController::class, 'index'])->name('message.index');
     Route::delete('/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');

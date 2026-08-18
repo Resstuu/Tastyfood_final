@@ -42,6 +42,24 @@ class GalleryController extends Controller
         return redirect()->route('admin.gallery')->with('success', 'Foto galeri berhasil ditambahkan.');
     }
 
+    public function update(Request $request, Gallery $gallery)
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            Storage::disk('public')->delete($gallery->image_path);
+            $validated['image_path'] = $request->file('image')->store('galleries', 'public');
+        }
+
+        $gallery->update($validated);
+
+        return redirect()->route('admin.gallery')->with('success', 'Foto galeri berhasil diperbarui.');
+    }
+
     public function destroy(Gallery $gallery)
     {
         Storage::disk('public')->delete($gallery->image_path);

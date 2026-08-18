@@ -106,6 +106,7 @@
                             @endif
                         </div>
                         <div class="card-footer">
+                            <button type="button" class="btn-action-edit" onclick="openEditModal({{ $gallery->id }}, '{{ addslashes($gallery->title) }}', '{{ addslashes($gallery->description) }}', '{{ Storage::url($gallery->image_path) }}')">Edit</button>
                             <form action="{{ route('admin.gallery.destroy', $gallery) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus foto ini?')">
                                 @csrf
                                 @method('DELETE')
@@ -119,5 +120,48 @@
             </div>
         </section>
     </main>
+
+    <div id="editModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:12px; padding:32px; width:100%; max-width:480px; position:relative;">
+            <h3 style="margin-bottom:20px; font-size:1.2rem; font-weight:700;">Edit Foto Galeri</h3>
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="edit_title">Nama Menu / Judul Foto</label>
+                    <input id="edit_title" type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_description">Deskripsi</label>
+                    <textarea id="edit_description" name="description" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Foto Saat Ini</label>
+                    <img id="edit_preview" src="" alt="Preview" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
+                </div>
+                <div class="form-group">
+                    <label for="edit_image">Ganti Foto (opsional)</label>
+                    <input id="edit_image" type="file" name="image" accept="image/png,image/jpeg,image/webp">
+                </div>
+                <div style="display:flex; gap:12px; margin-top:16px;">
+                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn-delete" onclick="closeEditModal()">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(id, title, description, imageUrl) {
+            document.getElementById('edit_title').value = title;
+            document.getElementById('edit_description').value = description;
+            document.getElementById('edit_preview').src = imageUrl;
+            document.getElementById('editForm').action = '/galery/' + id;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
 </body>
 </html>

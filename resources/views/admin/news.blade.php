@@ -113,11 +113,12 @@
                                 <td class="text-title">{{ $news->title }}</td>
                                 <td class="text-muted">{{ Str::limit($news->description, 80) }}</td>
                                 <td>
-                                    <form action="{{ route('admin.news.destroy', $news) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">
+                                    <form action="{{ route('admin.news.destroy', $news) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus berita ini?')" style="display:inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-action-delete">Hapus</button>
                                     </form>
+                                    <button type="button" class="btn-action-edit" onclick="openEditModal({{ $news->id }}, '{{ addslashes($news->title) }}', '{{ addslashes($news->description) }}', '{{ $news->image_path ? Storage::url($news->image_path) : '' }}')">Edit</button>
                                 </td>
                             </tr>
                         @empty
@@ -130,6 +131,56 @@
             </div>
         </section>
     </main>
+
+    <div id="editModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; align-items:center; justify-content:center;">
+        <div style="background:#fff; border-radius:12px; padding:32px; width:100%; max-width:480px; position:relative;">
+            <h3 style="margin-bottom:20px; font-size:1.2rem; font-weight:700;">Edit Berita</h3>
+            <form id="editForm" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+                <div class="form-group">
+                    <label for="edit_title">Judul Berita</label>
+                    <input id="edit_title" type="text" name="title" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit_description">Keterangan</label>
+                    <textarea id="edit_description" name="description" rows="5"></textarea>
+                </div>
+                <div class="form-group" id="edit_preview_wrap">
+                    <label>Gambar Saat Ini</label>
+                    <img id="edit_preview" src="" alt="Preview" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
+                </div>
+                <div class="form-group">
+                    <label for="edit_image">Ganti Gambar (opsional)</label>
+                    <input id="edit_image" type="file" name="image" accept="image/png,image/jpeg,image/webp">
+                </div>
+                <div style="display:flex; gap:12px; margin-top:16px;">
+                    <button type="submit" class="btn-primary">Simpan Perubahan</button>
+                    <button type="button" class="btn-action-delete" onclick="closeEditModal()">Batal</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function openEditModal(id, title, description, imageUrl) {
+            document.getElementById('edit_title').value = title;
+            document.getElementById('edit_description').value = description;
+            var preview = document.getElementById('edit_preview');
+            var previewWrap = document.getElementById('edit_preview_wrap');
+            if (imageUrl) {
+                preview.src = imageUrl;
+                previewWrap.style.display = 'block';
+            } else {
+                previewWrap.style.display = 'none';
+            }
+            document.getElementById('editForm').action = '/news/' + id;
+            document.getElementById('editModal').style.display = 'flex';
+        }
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>

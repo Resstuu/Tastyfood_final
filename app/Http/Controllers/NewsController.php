@@ -44,6 +44,26 @@ class NewsController extends Controller
         return redirect()->route('admin.news')->with('success', 'Berita berhasil ditambahkan.');
     }
 
+    public function update(Request $request, News $news)
+    {
+        $validated = $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'description' => ['nullable', 'string'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+        ]);
+
+        if ($request->hasFile('image')) {
+            if ($news->image_path) {
+                Storage::disk('public')->delete($news->image_path);
+            }
+            $validated['image_path'] = $request->file('image')->store('news', 'public');
+        }
+
+        $news->update($validated);
+
+        return redirect()->route('admin.news')->with('success', 'Berita berhasil diperbarui.');
+    }
+
     public function destroy(News $news)
     {
         if ($news->image_path) {
