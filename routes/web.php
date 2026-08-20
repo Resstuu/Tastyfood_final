@@ -37,6 +37,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::put('/news/{news}', [NewsController::class, 'update'])->name('admin.news.update');
     Route::delete('/news/{news}', [NewsController::class, 'destroy'])->name('admin.news.destroy');
     Route::get('/message', [MessageController::class, 'index'])->name('message.index');
+    Route::get('/message/{message}', [MessageController::class, 'show'])->name('message.show');
     Route::delete('/message/{message}', [MessageController::class, 'destroy'])->name('message.destroy');
     Route::get('/footer', [FooterController::class, 'edit'])->name('admin.footer');
     Route::put('/footer', [FooterController::class, 'update'])->name('admin.footer.update');

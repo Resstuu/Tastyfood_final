@@ -64,33 +64,21 @@
                         <tr>
                             <th>No</th>
                             <th>Tanggal</th>
-                            <th>Nama</th>
                             <th>Email</th>
                             <th>Subject</th>
-                            <th>Pesan</th>
-                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse($messages as $index => $msg)
-                            <tr>
+                            <tr style="cursor:pointer;" onclick="window.location='{{ route('message.show', $msg) }}'">
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $msg->created_at->format('d-m-Y H:i') }}</td>
-                                <td>{{ $msg->name }}</td>
                                 <td>{{ $msg->email }}</td>
                                 <td>{{ $msg->subject }}</td>
-                                <td>{{ $msg->message }}</td>
-                                <td>
-                                    <form action="{{ route('message.destroy', $msg) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus pesan ini?')">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn-action-delete">Hapus</button>
-                                    </form>
-                                </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7" class="text-center">Belum ada pesan masuk.</td>
+                                <td colspan="4" class="text-center">Belum ada pesan masuk.</td>
                             </tr>
                         @endforelse
                     </tbody>

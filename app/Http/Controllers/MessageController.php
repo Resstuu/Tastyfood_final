@@ -14,6 +14,11 @@ class MessageController extends Controller
         return view('admin.message', compact('messages'));
     }
 
+    public function show(Message $message)
+    {
+        return view('admin.message-detail', compact('message'));
+    }
+
     public function store(Request $request)
     {
         $validated = $request->validate([

@@ -46,7 +46,7 @@
                             <a href="{{ route('public.galeri.show', $gallery) }}" class="food-card">
                                 <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}">
                                 <h3>{{ $gallery->title }}</h3>
-                                @if($gallery->description)
+                                @if($gallery->description)  
                                     <p>{{ Str::limit($gallery->description, 95) }}</p>
                                 @endif
                             </a>
