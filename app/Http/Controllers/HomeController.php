@@ -19,9 +19,9 @@ class HomeController extends Controller
             : collect();
 
         return view('welcome', [
-            'featuredGalleries' => $galleries->take(4),
-            'homeGalleries' => $galleries,
-            'homeNews' => $news,
+            'galleries' => $galleries,
+            'featuredNews' => $news->first(),
+            'news' => $news->skip(1),
         ]);
     }
 }
