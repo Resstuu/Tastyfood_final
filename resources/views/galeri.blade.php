@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/galeri.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/home.css') }}">
+    @vite(['resources/css/app.css'])
+    <style>
+        .site-header { position: relative; padding: 25px 0; background: #fff; z-index: 50; }
+    </style>
 </head>
 <body>
     @php
@@ -20,9 +25,9 @@
         $featured = $galleryItems->first();
     @endphp
 
-    <header class="site-header">
-        <div class="container nav-wrap">
-            <a href="/" class="brand">TASTY FOOD</a>
+    <header class="site-header shadow-sm">
+        <div class="container nav-wrap flex justify-between items-center">
+            <a href="/" class="brand text-black no-underline" style="font-size: 28px; font-weight: 800;">TASTY FOOD</a>
             @include('partials.user-nav', ['active' => 'galeri'])
         </div>
     </header>

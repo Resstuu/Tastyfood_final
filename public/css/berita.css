@@ -32,13 +32,10 @@ a {
 }
 
 .site-header {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 5;
+    position: relative;
+    padding: 25px 0;
+    z-index: 50;
     width: 100%;
-    padding: 68px 0 0;
-    color: var(--white);
 }
 
 .nav-wrap {
@@ -426,7 +423,6 @@ a {
     .site-header {
         position: static;
         padding: 22px 0;
-        background: #111111;
     }
 
     .nav-wrap {
