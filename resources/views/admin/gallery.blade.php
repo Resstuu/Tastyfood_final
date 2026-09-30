@@ -48,10 +48,19 @@
         </div>
     </aside>
 
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
     <main class="admin-main">
         <div class="topbar">
-            <h2>galeri</h2>
-            <p>Kelola foto dan deskripsi yang tampil di halaman user</p>
+            <div class="topbar-left">
+                <button class="hamburger-btn" id="hamburgerBtn" onclick="toggleSidebar()">
+                    <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                </button>
+                <div>
+                    <h2>galeri</h2>
+                    <p>Kelola foto dan deskripsi yang tampil di halaman user</p>
+                </div>
+            </div>
         </div>
 
         @if(session('success'))
@@ -152,6 +161,14 @@
     </div>
 
     <script>
+        function toggleSidebar() {
+            document.querySelector('.admin-sidebar').classList.toggle('open');
+            document.getElementById('sidebarOverlay').classList.toggle('active');
+        }
+        function closeSidebar() {
+            document.querySelector('.admin-sidebar').classList.remove('open');
+            document.getElementById('sidebarOverlay').classList.remove('active');
+        }
         function openEditModal(id, title, description, imageUrl) {
             document.getElementById('edit_title').value = title;
             document.getElementById('edit_description').value = description;
