@@ -12,8 +12,6 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <style>
         .site-header { position: relative; padding: 25px 0; background: #fff; z-index: 50; }
-        .hero-img-bg { position: absolute; right: -5%; top: -10%; width: 50%; max-width: 600px; z-index: -1; }
-        @media (max-width: 1024px) { .hero-img-bg { display: none; } }
     </style>
 </head>
 <body class="bg-white overflow-x-hidden">
@@ -26,7 +24,7 @@
 
     <main class="relative overflow-hidden">
         {{-- Hero Section --}}
-        <div class="container relative">
+        <div class="container relative" style="overflow: visible;">
             <div class="flex flex-col items-center gap-8 py-12 lg:my-20 lg:w-1/2 lg:items-start lg:gap-6 xl:px-0">
                 <div class="w-full">
                     <div class="lg:w-30 -top-6 mb-8 h-0.5 w-16 bg-gray-900 sm:-top-8 sm:w-20 md:-top-10 md:w-24 lg:h-1"></div>
@@ -40,7 +38,6 @@
                 </p>
                 <x-ui.button :href="route('tentang')" class="w-full text-center sm:w-auto text-white">TENTANG KAMI</x-ui.button>
             </div>
-            <img src="/assets/img-4-2000x2000.png" alt="Sepiring makanan sehat" class="hero-img-bg drop-shadow-2xl">
         </div>
 
         {{-- About Home --}}

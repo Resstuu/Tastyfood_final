@@ -16,7 +16,7 @@
 
             <nav class="nav-menu">
                 <a href="{{ route('dashboard') }}" class="nav-link">
-                    <span>Home</span>
+                    <span>Dashboard</span>
                 </a>
                 <a href="{{ route('admin.gallery') }}" class="nav-link">
                     <span>Galeri</span>
