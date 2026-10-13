@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Gallery;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class GalleryController extends Controller
@@ -17,7 +18,9 @@ class GalleryController extends Controller
 
     public function publicIndex()
     {
-        $galleries = Gallery::latest()->get();
+        $galleries = Schema::hasTable('galleries')
+            ? Gallery::latest()->get()
+            : collect();
 
         return view('galeri', compact('galleries'));
     }

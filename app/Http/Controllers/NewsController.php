@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\News;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Storage;
 
 class NewsController extends Controller
@@ -17,7 +18,9 @@ class NewsController extends Controller
 
     public function publicIndex()
     {
-        $newsItems = News::latest()->get();
+        $newsItems = Schema::hasTable('news')
+            ? News::latest()->get()
+            : collect();
 
         return view('berita', compact('newsItems'));
     }

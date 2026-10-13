@@ -1,3 +1,14 @@
+@php
+    $userNavAuthenticated = false;
+
+    try {
+        $userNavAuthenticated = \Illuminate\Support\Facades\Schema::hasTable('users')
+            && \Illuminate\Support\Facades\Auth::check();
+    } catch (\Throwable $e) {
+        $userNavAuthenticated = false;
+    }
+@endphp
+
 <button class="nav-hamburger" id="navHamburger" onclick="openUserSidebar()" aria-label="Buka menu" aria-expanded="false">
     <svg width="22" height="22" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
 </button>
@@ -19,14 +30,14 @@
         <a href="/kontak" class="user-sidebar-link @if(($active ?? '') === 'kontak') active @endif">Kontak</a>
     </nav>
     <div class="user-sidebar-footer">
-        @auth
+        @if($userNavAuthenticated)
             <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="user-sidebar-logout">LOGOUT</button>
             </form>
         @else
             <a href="{{ route('login') }}" class="user-sidebar-logout">LOGIN</a>
-        @endauth
+        @endif
     </div>
 </aside>
 
@@ -37,14 +48,14 @@
     <a href="/galeri" @if(($active ?? '') === 'galeri') aria-current="page" @endif>Galeri</a>
     <a href="/kontak" @if(($active ?? '') === 'kontak') aria-current="page" @endif>Kontak</a>
 
-    @auth
+    @if($userNavAuthenticated)
         <form action="{{ route('logout') }}" method="POST" class="nav-logout">
             @csrf
             <button type="submit" class="nav-action">LOGOUT</button>
         </form>
     @else
         <a href="{{ route('login') }}" class="nav-action">LOGIN</a>
-    @endauth
+    @endif
 </nav>
 
 <script>

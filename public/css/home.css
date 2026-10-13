@@ -218,6 +218,19 @@ a {
     text-transform: uppercase;
 }
 
+.empty-state {
+    margin: 0;
+    color: #8d8d8d;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 800;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.empty-state--light {
+    color: rgba(255, 255, 255, .82);
+}
+
 .hero {
     position: relative;
     min-height: 630px;
@@ -290,7 +303,13 @@ a {
     top: -205px;
     right: -235px;
     width: min(860px, 63vw);
+    max-height: none;
+    object-fit: contain;
     filter: drop-shadow(0 8px 5px rgba(0, 0, 0, .18));
+}
+
+.hero--plain .hero-copy {
+    width: min(640px, 100%);
 }
 
 .section {
@@ -327,7 +346,7 @@ a {
     position: relative;
     min-height: 592px;
     padding: 150px 0 100px;
-    background: url("/assets/Group%2070.png") center/cover no-repeat;
+    background: #111111;
 }
 
 .carousel {
@@ -338,7 +357,27 @@ a {
 .carousel-track {
     display: flex;
     gap: 16px;
-    transition: transform 0.4s ease;
+    will-change: transform;
+    transition: transform 0.55s cubic-bezier(.22, .8, .25, 1);
+}
+
+.carousel-track.is-sliding .food-card {
+    transform: translateY(-3px);
+}
+
+.food-carousel {
+    position: relative;
+    overflow: visible;
+}
+
+.food-carousel-window {
+    overflow: hidden;
+    margin-top: -78px;
+    padding-top: 78px;
+}
+
+.food-carousel-track .food-card {
+    flex: 0 0 calc((100% - 48px) / 4);
 }
 
 .carousel-btn {
@@ -405,12 +444,14 @@ a {
 .food-card {
     display: block;
     position: relative;
-    min-height: 290px;
-    padding: 118px 30px 28px;
+    height: 310px;
+    min-height: 310px;
+    padding: 118px 24px 24px;
     border-radius: 10px;
     background: var(--white);
     text-align: center;
     box-shadow: 0 8px 22px rgba(0, 0, 0, .18);
+    transition: transform .35s ease, box-shadow .35s ease;
 }
 
 .food-card img {
@@ -419,7 +460,8 @@ a {
     left: 50%;
     width: 170px;
     height: 170px;
-    object-fit: contain;
+    border-radius: 50%;
+    object-fit: cover;
     transform: translateX(-50%);
 }
 
@@ -432,10 +474,24 @@ a {
     text-transform: uppercase;
 }
 
+.food-card h3 {
+    display: -webkit-box;
+    min-height: 58px;
+    overflow: hidden;
+    font-size: clamp(18px, 1.7vw, 24px);
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+}
+
 .food-card p {
+    display: -webkit-box;
     margin: 15px 0 0;
+    overflow: hidden;
     color: #333333;
+    font-size: clamp(11px, .9vw, 12px);
     font-weight: 500;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
 }
 
 .news {
@@ -534,6 +590,19 @@ a {
 
 .gallery-grid a {
     display: block;
+    overflow: hidden;
+    padding: 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background: var(--white);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.gallery-grid a:hover {
+    border-color: #d4d4d4;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, .13);
+    transform: translateY(-3px);
 }
 
 .gallery-grid img {
@@ -647,16 +716,21 @@ a {
     }
 
     .hero-food {
-        position: relative;
-        top: auto;
-        right: auto;
-        width: min(520px, 92vw);
-        margin: 42px -120px -40px auto;
+        display: none;
     }
 
     .food-grid,
     .gallery-grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .food-carousel-track .food-card {
+        flex-basis: calc((100% - 16px) / 2);
+    }
+
+    .food-card {
+        height: 300px;
+        min-height: 300px;
     }
 
     .news-grid,
@@ -720,6 +794,16 @@ a {
     .side-news,
     .gallery-grid {
         grid-template-columns: 1fr;
+    }
+
+    .food-carousel-track .food-card {
+        flex-basis: 100%;
+    }
+
+    .food-card {
+        height: 296px;
+        min-height: 296px;
+        padding-inline: 22px;
     }
 
     .food-grid {

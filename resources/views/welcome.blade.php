@@ -8,210 +8,210 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
-    @vite(['resources/css/app.css'])
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <style>
-        .site-header { position: relative; padding: 25px 0; background: #fff; z-index: 50; }
-    </style>
 </head>
-<body class="bg-white overflow-x-hidden">
-    <header class="site-header shadow-sm">
-        <div class="container nav-wrap flex justify-between items-center">
-            <a href="/" class="brand text-black no-underline" style="font-size: 28px; font-weight: 800;">TASTY FOOD</a>
+<body>
+    <header class="site-header">
+        <div class="container nav-wrap">
+            <a href="/" class="brand">TASTY FOOD</a>
             @include('partials.user-nav', ['active' => 'home'])
         </div>
     </header>
 
-    <main class="relative overflow-hidden">
-        {{-- Hero Section --}}
-        <div class="container relative" style="overflow: visible;">
-            <div class="flex flex-col items-center gap-8 py-12 lg:my-20 lg:w-1/2 lg:items-start lg:gap-6 xl:px-0">
-                <div class="w-full">
-                    <div class="lg:w-30 -top-6 mb-8 h-0.5 w-16 bg-gray-900 sm:-top-8 sm:w-20 md:-top-10 md:w-24 lg:h-1"></div>
-                    <p class="lg:leading-14 text-3xl uppercase leading-tight sm:text-4xl md:text-5xl">
-                         <br>
-                        <span class="font-extrabold uppercase">Tasty food</span>
-                    </p>
-                </div>
-                <p class="text-sm font-medium text-gray-700 leading-relaxed">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque magna aliquet cursus tempus. Duis viverra metus et turpis elementum elementum. Aliquam rutrum placerat tellus et suscipit. Curabitur facilisis lectus vitae eros malesuada eleifend. Mauris eget tellus odio. Phasellus vestibulum turpis ac sem commodo, at posuere eros consequat. Duis nec ex at ante volutpat posuere. Morbi vel nunc tortor. Nulla facilisi. Nulla accumsan ullamcorper purus nec venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet erat vel leo rutrum lobortis
-                </p>
-                <x-ui.button :href="route('tentang')" class="w-full text-center sm:w-auto text-white">TENTANG KAMI</x-ui.button>
-            </div>
-        </div>
-
-        {{-- About Home --}}
-        <div class="flex items-center justify-center px-4 py-12 sm:px-6 md:px-8 bg-gray-50">
-            <div class="flex w-full flex-col gap-6 py-12 text-center sm:gap-8 sm:py-16 md:w-3/4 md:gap-10 md:py-20 lg:w-2/5">
-                <p class="text-lg font-bold sm:text-xl uppercase">TENTANG KAMI</p>
-                <p class="text-sm font-medium text-gray-700 leading-relaxed">
-                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce scelerisque magna aliquet cursus tempus. Duis viverra metus et turpis elementum elementum. Aliquam rutrum placerat tellus et suscipit. Curabitur facilisis lectus vitae eros malesuada eleifend. Mauris eget tellus odio. Phasellus vestibulum turpis ac sem commodo, at posuere eros consequat. Duis nec ex at ante volutpat posuere. Morbi vel nunc tortor. Nulla facilisi. Nulla accumsan ullamcorper purus nec venenatis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer imperdiet erat vel leo rutrum lobortis
-                </p>
-                <div class="lg:bottom-25 lg:w-30 bottom-12 left-0 right-0 mx-auto h-0.5 w-16 bg-gray-900 sm:bottom-16 sm:w-20 md:bottom-20 md:w-24 lg:h-1"></div>
-            </div>
-        </div>
-
-        {{-- Carousel Home --}}
-        @if ($galleries && $galleries->isNotEmpty())
-            <div class="lg:px-22 md:px-22 overflow-hidden bg-gray-900 px-4 pb-24 pt-48 sm:px-6 relative"
-                style="background-image: url('/assets/Group%2070.png'); background-size: cover; background-position: center;"
-                x-data="carousel()"
-                x-init="init()"
-                @resize.window="handleResize()"
-               
-               
-               >
-
-                <div class="container relative w-full">
-                    <div class="relative">
-                        <!-- Render slides directly in HTML -->
-                        <div class="flex justify-center gap-4 sm:gap-6">
-                            <template x-for="(gallery, index) in visibleSlides" :key="index">
-                                <a :href="gallery.url" class="flex flex-col gap-5 pt-24 relative w-64 rounded-2xl bg-white px-8 py-10 text-center shadow-lg transition duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                                    <h3 class="flex-1 text-xl font-bold uppercase text-gray-900" x-text="gallery.title"></h3>
-                                    <p class="flex-1 text-sm text-gray-600" x-text="gallery.description ? gallery.description.substring(0, 80) + '...' : ''"></p>
-                                    <img :src="gallery.image_url" :alt="gallery.title"
-                                        class="absolute left-0 right-0 top-0 mx-auto h-32 w-32 -translate-y-1/2 rounded-full object-cover shadow-md transition duration-300 hover:scale-110 bg-white p-1">
-                                </a>
-                            </template>
-                        </div>
-                    </div>
-
-                    <button type="button"
-                        class="absolute left-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:px-4"
-                        @click="changeSlide(-1)"
-                       >
-                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-gray-900 shadow-lg transition duration-150 hover:bg-amber-500 hover:scale-110 hover:shadow-xl sm:h-12 sm:w-12">
-                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m15 19-7-7 7-7" />
-                            </svg>
-                            <span class="sr-only">Previous</span>
-                        </span>
-                    </button>
-
-                    <button type="button"
-                        class="absolute right-0 top-1/2 z-30 flex -translate-y-1/2 cursor-pointer items-center justify-center px-2 transition duration-150 hover:scale-110 sm:px-4"
-                        @click="changeSlide(1)"
-                       >
-                        <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-amber-400 text-gray-900 shadow-lg transition duration-150 hover:bg-amber-500 hover:scale-110 hover:shadow-xl sm:h-12 sm:w-12">
-                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="m9 5 7 7-7 7" />
-                            </svg>
-                            <span class="sr-only">Next</span>
-                        </span>
-                    </button>
-                </div>
-            </div>
-
-            @php
-                $carouselData = $galleries->map(function($g) {
-                    return [
-                        'title' => $g->title,
-                        'description' => $g->description,
-                        'image_url' => Storage::url($g->image_path),
-                        'url' => route('public.galeri.show', $g)
-                    ];
-                });
-            @endphp
-
-            <script>
-                function carousel() {
-                    return {
-                        galleries: @json($carouselData),
-                        currentSlide: 0,
-                        itemsPerSlide: 1,
-
-                        init() {
-                            this.updateItemsPerSlide();
-                            this.$watch('itemsPerSlide', () => {});
-                        },
-
-                        get visibleSlides() {
-                            if (!this.galleries || this.galleries.length === 0) return [];
-                            const start = this.currentSlide * this.itemsPerSlide;
-                            return this.galleries.slice(start, start + this.itemsPerSlide);
-                        },
-
-                        get totalSlides() {
-                            return Math.ceil(this.galleries.length / this.itemsPerSlide);
-                        },
-
-                        updateItemsPerSlide() {
-                            const width = window.innerWidth;
-                            if (width >= 1024) {
-                                this.itemsPerSlide = 4;
-                            } else if (width >= 768) {
-                                this.itemsPerSlide = 2;
-                            } else {
-                                this.itemsPerSlide = 1;
-                            }
-                            if (this.currentSlide >= this.totalSlides) {
-                                this.currentSlide = 0;
-                            }
-                        },
-
-                        handleResize() {
-                            this.updateItemsPerSlide();
-                        },
-
-                        changeSlide(direction) {
-                            if (this.totalSlides > 0) {
-                                this.currentSlide = (this.currentSlide + direction + this.totalSlides) % this.totalSlides;
-                            }
-                        }
-                    }
-                }
-            </script>
-        @endif
-
-        {{-- News Home --}}
-        <div class="bg-gray-100 px-4 py-16 sm:px-6 md:px-8 lg:px-20 lg:py-24">
+    <main>
+        <section class="hero">
             <div class="container">
-                <p class="mb-10 text-center text-xl font-extrabold uppercase tracking-widest sm:text-2xl md:mb-12">BERITA KAMI</p>
-                <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-                    @if ($featuredNews)
-                        <x-ui.card :image="Storage::url($featuredNews->image_path)" :title="$featuredNews->title" content="{{ Str::limit($featuredNews->description, 300) }}"
-                            :link="route('berita.show', $featuredNews->id)" featured="true" />
+                <div class="hero-copy">
+                    <div class="line" aria-hidden="true"></div>
+                    <h1>HEALTHY <strong>TASTY FOOD</strong></h1>
+                    @if($heroGallery?->description)
+                        <p>{{ $heroGallery->description }}</p>
                     @endif
-                    @if ($news && $news->isNotEmpty())
-                        @foreach ($news as $index => $newsItem)
-                            <x-ui.card :image="Storage::url($newsItem->image_path)" :title="$newsItem->title" content="{{ Str::limit($newsItem->description, 100) }}"
-                                :link="route('berita.show', $newsItem->id)" />
-                        @endforeach
-                    @elseif (!$featuredNews)
-                        <div class="col-span-full my-24 flex items-center justify-center sm:my-32">
-                            <p class="text-3xl font-extrabold uppercase sm:text-4xl md:text-5xl text-gray-400">Belum ada berita</p>
-                        </div>
-                    @endif
+                    <a href="{{ route('tentang') }}" class="btn">Tentang Kami</a>
                 </div>
             </div>
-        </div>
+            <img class="hero-food" src="/assets/img-4-2000x2000.png" alt="Sepiring makanan sehat">
+        </section>
 
-        {{-- Gallery Home --}}
-        <div class="flex flex-col gap-12 px-4 py-16 sm:gap-16 sm:px-6 md:gap-20 md:px-8 lg:px-20 lg:py-24">
+        <section class="about">
             <div class="container">
-                <p class="text-center text-xl font-extrabold uppercase tracking-widest sm:text-2xl mb-10">GALERI KAMI</p>
+                <h2 class="section-title">Tentang Kami</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ornare, augue eu rutrum commodo, dui diam convallis arcu, eget consectetur ex sem eget lacus. Nullam vitae dignissim neque, vel luctus ex. Fusce sit amet viverra ante.</p>
+                <div class="line" aria-hidden="true"></div>
+            </div>
+        </section>
+
+        <section class="featured" aria-label="Menu pilihan">
+            <div class="container">
                 @if ($galleries && $galleries->isNotEmpty())
-                    <div class="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-3 mb-12">
-                        @foreach ($galleries->take(6) as $index => $gallery)
+                    <div class="carousel food-carousel" data-food-carousel>
+                        <div class="food-carousel-window">
+                            <div class="carousel-track food-carousel-track" data-carousel-track>
+                                @foreach ($galleries as $gallery)
+                                    <a href="{{ route('public.galeri.show', $gallery) }}" class="food-card">
+                                        <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}">
+                                        <h3>{{ $gallery->title }}</h3>
+                                        @if($gallery->description)
+                                            <p>{{ Str::limit($gallery->description, 95) }}</p>
+                                        @endif
+                                    </a>
+                                @endforeach
+                            </div>
+                        </div>
+                        @if($galleries->count() > 1)
+                            <button class="carousel-btn carousel-btn--prev" type="button" aria-label="Menu sebelumnya" data-carousel-prev>&lt;</button>
+                            <button class="carousel-btn carousel-btn--next" type="button" aria-label="Menu berikutnya" data-carousel-next>&gt;</button>
+                            <div class="carousel-dots" aria-label="Navigasi carousel" data-carousel-dots></div>
+                        @endif
+                    </div>
+                @else
+                    <p class="empty-state empty-state--light">Belum ada foto menu</p>
+                @endif
+            </div>
+        </section>
+
+        <section class="section news">
+            <div class="container">
+                <h2 class="section-title">Berita Kami</h2>
+                @if ($featuredNews || ($news && $news->isNotEmpty()))
+                    <div class="news-grid">
+                        @if ($featuredNews)
+                            <a href="{{ route('berita.show', $featuredNews) }}" class="article large">
+                                @if($featuredNews->image_path)
+                                    <img class="curry-cover" src="{{ Storage::url($featuredNews->image_path) }}" alt="{{ $featuredNews->title }}">
+                                @endif
+                                <div class="article-body">
+                                    <h3>{{ $featuredNews->title }}</h3>
+                                    @if($featuredNews->description)
+                                        <p>{{ Str::limit($featuredNews->description, 300) }}</p>
+                                    @endif
+                                    <div class="article-footer">
+                                        <span class="read-more">Baca selengkapnya</span>
+                                        <span class="dots">...</span>
+                                    </div>
+                                </div>
+                            </a>
+                        @endif
+                        @if ($news && $news->isNotEmpty())
+                            <div class="side-news">
+                                @foreach ($news->take(4) as $newsItem)
+                                    <a href="{{ route('berita.show', $newsItem) }}" class="article">
+                                        @if($newsItem->image_path)
+                                            <img src="{{ Storage::url($newsItem->image_path) }}" alt="{{ $newsItem->title }}">
+                                        @endif
+                                        <div class="article-body">
+                                            <h3>{{ $newsItem->title }}</h3>
+                                            @if($newsItem->description)
+                                                <p>{{ Str::limit($newsItem->description, 95) }}</p>
+                                            @endif
+                                            <div class="article-footer">
+                                                <span class="read-more">Baca selengkapnya</span>
+                                                <span class="dots">...</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endif
+                    </div>
+                @else
+                    <p class="empty-state">Belum ada berita</p>
+                @endif
+            </div>
+        </section>
+
+        <section class="section gallery">
+            <div class="container">
+                <h2 class="section-title">Galeri Kami</h2>
+                @if ($galleries && $galleries->isNotEmpty())
+                    <div class="gallery-grid">
+                        @foreach ($galleries->take(6) as $gallery)
                             <a href="{{ route('public.galeri.show', $gallery) }}">
-                                <x-ui.image-card :image="Storage::url($gallery->image_path)" :alt="$gallery->title" />
+                                <img src="{{ Storage::url($gallery->image_path) }}" alt="{{ $gallery->title }}">
                             </a>
                         @endforeach
                     </div>
                 @else
-                    <div class="my-24 flex items-center justify-center sm:my-32">
-                        <p class="text-3xl font-extrabold uppercase sm:text-4xl md:text-5xl text-gray-400">Belum ada galeri</p>
-                    </div>
+                    <p class="empty-state">Belum ada galeri</p>
                 @endif
-                <div class="text-center">
-                    <x-ui.button href="{{ route('public.galeri') }}" class="mx-auto w-full text-center sm:w-auto text-white">LIHAT LEBIH BANYAK</x-ui.button>
+                <div class="gallery-action">
+                    <a href="{{ route('public.galeri') }}" class="btn">Lihat Lebih Banyak</a>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
     @include('partials.user-footer')
+    <script>
+        document.querySelectorAll('[data-food-carousel]').forEach((carousel) => {
+            const track = carousel.querySelector('[data-carousel-track]');
+            const cards = Array.from(track.querySelectorAll('.food-card'));
+            const prevButton = carousel.querySelector('[data-carousel-prev]');
+            const nextButton = carousel.querySelector('[data-carousel-next]');
+            const dotsWrap = carousel.querySelector('[data-carousel-dots]');
+            let currentPage = 0;
+            let itemsPerView = 1;
 
+            const getItemsPerView = () => {
+                if (window.innerWidth >= 1024) return 4;
+                if (window.innerWidth >= 641) return 2;
+                return 1;
+            };
+
+            const getPageCount = () => Math.ceil(cards.length / itemsPerView);
+
+            const getMaxPage = () => Math.max(0, getPageCount() - 1);
+
+            const renderDots = () => {
+                if (!dotsWrap) return;
+
+                const dotCount = getPageCount();
+                dotsWrap.innerHTML = '';
+
+                if (dotCount <= 1) return;
+
+                for (let index = 0; index < dotCount; index += 1) {
+                    const dot = document.createElement('button');
+                    dot.className = `carousel-dot${index === currentPage ? ' active' : ''}`;
+                    dot.type = 'button';
+                    dot.setAttribute('aria-label', `Tampilkan blok menu ${index + 1}`);
+                    dot.addEventListener('click', () => {
+                        currentPage = index;
+                        updateCarousel();
+                    });
+                    dotsWrap.appendChild(dot);
+                }
+            };
+
+            const updateCarousel = () => {
+                itemsPerView = getItemsPerView();
+                currentPage = Math.min(currentPage, getMaxPage());
+
+                const targetCard = cards[currentPage * itemsPerView];
+                const offset = targetCard ? targetCard.offsetLeft : 0;
+
+                track.classList.add('is-sliding');
+                track.style.transform = `translateX(-${offset}px)`;
+                window.setTimeout(() => track.classList.remove('is-sliding'), 520);
+
+                if (prevButton) prevButton.hidden = getMaxPage() === 0;
+                if (nextButton) nextButton.hidden = getMaxPage() === 0;
+
+                renderDots();
+            };
+
+            prevButton?.addEventListener('click', () => {
+                currentPage = currentPage <= 0 ? getMaxPage() : currentPage - 1;
+                updateCarousel();
+            });
+
+            nextButton?.addEventListener('click', () => {
+                currentPage = currentPage >= getMaxPage() ? 0 : currentPage + 1;
+                updateCarousel();
+            });
+
+            window.addEventListener('resize', updateCarousel);
+            updateCarousel();
+        });
+    </script>
 </body>
 </html>

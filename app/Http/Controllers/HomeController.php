@@ -20,6 +20,7 @@ class HomeController extends Controller
 
         return view('welcome', [
             'galleries' => $galleries,
+            'heroGallery' => $galleries->first(),
             'featuredNews' => $news->first(),
             'news' => $news->skip(1),
         ]);
