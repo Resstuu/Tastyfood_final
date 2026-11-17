@@ -34,9 +34,9 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
+            'description' => ['required', 'string'],
             'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-        ]);
+        ], ['required' => 'Semua harus terisi.']);
 
         $validated['image_path'] = $request->file('image')->store('galleries', 'public');
 
@@ -49,9 +49,9 @@ class GalleryController extends Controller
     {
         $validated = $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
-            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
-        ]);
+            'description' => ['required', 'string'],
+            'image' => ['required', 'image', 'mimes:jpg,jpeg,png,webp', 'max:4096'],
+        ], ['required' => 'Semua harus terisi.']);
 
         if ($request->hasFile('image')) {
             Storage::disk('public')->delete($gallery->image_path);

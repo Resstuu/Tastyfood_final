@@ -68,6 +68,7 @@
 
         @if(isset($errors) && $errors->any())
             <div class="alert-error-box">
+                <div>Semua harus terisi. Periksa kembali data yang wajib diisi.</div>
                 @foreach($errors->all() as $error)
                     <div>{{ $error }}</div>
                 @endforeach
@@ -91,13 +92,13 @@
                     </div>
                     <div class="form-group">
                         <label for="copyright">Copyright</label>
-                        <input id="copyright" type="text" name="copyright" value="{{ old('copyright', $footerSetting->copyright) }}">
+                        <input id="copyright" type="text" name="copyright" value="{{ old('copyright', $footerSetting->copyright) }}" required>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="description">Deskripsi Brand</label>
-                    <textarea id="description" name="description" rows="4">{{ old('description', $footerSetting->description) }}</textarea>
+                    <textarea id="description" name="description" rows="4" required>{{ old('description', $footerSetting->description) }}</textarea>
                 </div>
 
                 <div class="form-grid-2">
@@ -114,12 +115,12 @@
                 <div class="form-grid-2">
                     <div class="form-group">
                         <label for="useful_links">Link Useful</label>
-                        <textarea id="useful_links" name="useful_links" rows="5" placeholder="Blog|#">{{ old('useful_links', $footerSetting->useful_links) }}</textarea>
+                        <textarea id="useful_links" name="useful_links" rows="5" placeholder="Blog|#" required>{{ old('useful_links', $footerSetting->useful_links) }}</textarea>
                         <small class="form-help">Format: Label|URL, satu link per baris.</small>
                     </div>
                     <div class="form-group">
                         <label for="privacy_links">Link Privacy</label>
-                        <textarea id="privacy_links" name="privacy_links" rows="5" placeholder="Tentang Kami|/tentang">{{ old('privacy_links', $footerSetting->privacy_links) }}</textarea>
+                        <textarea id="privacy_links" name="privacy_links" rows="5" placeholder="Tentang Kami|/tentang" required>{{ old('privacy_links', $footerSetting->privacy_links) }}</textarea>
                         <small class="form-help">Contoh: Kontak Kami|/kontak</small>
                     </div>
                 </div>
@@ -131,29 +132,29 @@
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input id="email" type="email" name="email" value="{{ old('email', $footerSetting->email) }}">
+                        <input id="email" type="email" name="email" value="{{ old('email', $footerSetting->email) }}" required>
                     </div>
                 </div>
 
                 <div class="form-grid-2">
                     <div class="form-group">
                         <label for="phone">Nomor Telepon</label>
-                        <input id="phone" type="text" name="phone" value="{{ old('phone', $footerSetting->phone) }}">
+                        <input id="phone" type="text" name="phone" value="{{ old('phone', $footerSetting->phone) }}" required>
                     </div>
                     <div class="form-group">
                         <label for="location">Lokasi</label>
-                        <input id="location" type="text" name="location" value="{{ old('location', $footerSetting->location) }}">
+                        <input id="location" type="text" name="location" value="{{ old('location', $footerSetting->location) }}" required>
                     </div>
                 </div>
 
                 <div class="form-grid-2">
                     <div class="form-group">
                         <label for="facebook_url">URL Facebook</label>
-                        <input id="facebook_url" type="text" name="facebook_url" value="{{ old('facebook_url', $footerSetting->facebook_url) }}">
+                        <input id="facebook_url" type="text" name="facebook_url" value="{{ old('facebook_url', $footerSetting->facebook_url) }}" required>
                     </div>
                     <div class="form-group">
                         <label for="twitter_url">URL Twitter</label>
-                        <input id="twitter_url" type="text" name="twitter_url" value="{{ old('twitter_url', $footerSetting->twitter_url) }}">
+                        <input id="twitter_url" type="text" name="twitter_url" value="{{ old('twitter_url', $footerSetting->twitter_url) }}" required>
                     </div>
                 </div>
 

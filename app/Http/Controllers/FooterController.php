@@ -18,19 +18,19 @@ class FooterController extends Controller
     {
         $validated = $request->validate([
             'brand_title' => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string'],
+            'description' => ['required', 'string'],
             'useful_title' => ['required', 'string', 'max:255'],
-            'useful_links' => ['nullable', 'string'],
+            'useful_links' => ['required', 'string'],
             'privacy_title' => ['required', 'string', 'max:255'],
-            'privacy_links' => ['nullable', 'string'],
+            'privacy_links' => ['required', 'string'],
             'contact_title' => ['required', 'string', 'max:255'],
-            'email' => ['nullable', 'email', 'max:255'],
-            'phone' => ['nullable', 'string', 'max:255'],
-            'location' => ['nullable', 'string', 'max:255'],
-            'facebook_url' => ['nullable', 'string', 'max:255'],
-            'twitter_url' => ['nullable', 'string', 'max:255'],
-            'copyright' => ['nullable', 'string', 'max:255'],
-        ]);
+            'email' => ['required', 'email', 'max:255'],
+            'phone' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+            'facebook_url' => ['required', 'string', 'max:255'],
+            'twitter_url' => ['required', 'string', 'max:255'],
+            'copyright' => ['required', 'string', 'max:255'],
+        ], ['required' => 'Semua harus terisi.']);
 
         FooterSetting::query()->firstOrCreate([], FooterSetting::defaults())->update($validated);
 

@@ -69,6 +69,7 @@
 
         @if(isset($errors) && $errors->any())
             <div class="alert-error-box">
+                <div>Semua harus terisi. Periksa kembali data yang wajib diisi.</div>
                 @foreach($errors->all() as $error)
                     <div>{{ $error }}</div>
                 @endforeach
@@ -88,7 +89,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Deskripsi</label>
-                    <textarea id="description" name="description" rows="4" placeholder="Tulis deskripsi singkat menu">{{ old('description') }}</textarea>
+                    <textarea id="description" name="description" rows="4" placeholder="Tulis deskripsi singkat menu" required>{{ old('description') }}</textarea>
                 </div>
                 <div class="form-group">
                     <label for="image">Foto Menu</label>
@@ -142,15 +143,15 @@
                 </div>
                 <div class="form-group">
                     <label for="edit_description">Deskripsi</label>
-                    <textarea id="edit_description" name="description" rows="4"></textarea>
+                    <textarea id="edit_description" name="description" rows="4" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>Foto Saat Ini</label>
                     <img id="edit_preview" src="" alt="Preview" style="width:100%; max-height:180px; object-fit:cover; border-radius:8px; margin-bottom:8px;">
                 </div>
                 <div class="form-group">
-                    <label for="edit_image">Ganti Foto (opsional)</label>
-                    <input id="edit_image" type="file" name="image" accept="image/png,image/jpeg,image/webp">
+                    <label for="edit_image">Ganti Foto</label>
+                    <input id="edit_image" type="file" name="image" accept="image/png,image/jpeg,image/webp" required>
                 </div>
                 <div style="display:flex; gap:12px; margin-top:16px;">
                     <button type="submit" class="btn-primary">Simpan Perubahan</button>
